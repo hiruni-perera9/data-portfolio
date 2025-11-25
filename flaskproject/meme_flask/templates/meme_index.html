@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Auto-refresh every 30 seconds -->
+  <meta http-equiv="refresh" content="30; url=http://127.0.0.1/" />
+
+  <title>Reddit Meme Viewer</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional: Dark gradient background -->
+  <style>
+    body {
+      background: radial-gradient(circle at top, #1f1f1f, #000000 70%);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen text-white flex flex-col items-center justify-center p-6">
+
+  <h1 class="text-4xl font-bold mb-6 text-center tracking-wide">
+    Reddit Meme Generator
+  </h1>
+
+  <p class="text-lg text-gray-300 mb-4">
+    Enjoy your meme! Auto-refreshes in 30 seconds.
+  </p>
+
+  <!-- Meme card container -->
+  <div class="bg-gray-900 shadow-2xl rounded-xl p-6 max-w-2xl w-full text-center">
+
+    <!-- Meme Image -->
+    <img
+      src="{{ meme_pic }}"
+      alt="Reddit meme"
+      class="rounded-lg max-h-[500px] mx-auto shadow-lg"
+    />
+
+    <!-- Subreddit label -->
+    <p class="mt-4 text-sm text-gray-400">
+      Source subreddit:
+      <span class="font-semibold text-indigo-300">r/{{ subreddit }}</span>
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <p class="mt-8 text-gray-500 text-sm">
+    Powered by Flask + Reddit API + questionable life decisions.
+  </p>
+
+</body>
+</html>
+
