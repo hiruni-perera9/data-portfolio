@@ -284,7 +284,7 @@ export default function Home() {
           {activeNav === 'gallery' ? (
             <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
               <div className="max-w-4xl mx-auto bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
-                <div className="flex flex-col gap-4 md:flex-row md:items-end">
+                <div className="flex flex-col gap-4">
                   <div className="flex-1">
                     <h3 className="text-2xl font-semibold text-white">Dinosaur Image Explorer</h3>
                     <p className="text-white/60 text-sm">
