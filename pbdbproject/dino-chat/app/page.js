@@ -32,6 +32,7 @@ export default function Home() {
   const [imageSearchMessage, setImageSearchMessage] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeNav, setActiveNav] = useState('chat');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -128,6 +129,7 @@ export default function Home() {
     { id: 'discover', label: 'Discover', description: 'Browse curated fossil facts', icon: MapIcon },
     { id: 'gallery', label: 'Gallery', description: 'Dive into paleo imagery', icon: PhotoIcon }
   ];
+  const activeNavMeta = navigationItems.find((item) => item.id === activeNav) || navigationItems[0];
   const modeOptions = [
     { id: 'auto', label: 'Auto', description: 'Let the assistant decide', icon: SparklesIcon },
     { id: 'educational', label: 'Educational', description: 'Teacher-style responses', icon: AcademicCapIcon },
@@ -138,10 +140,19 @@ export default function Home() {
   const tileButtonActive = 'bg-linear-to-r from-slate-600/70 to-slate-700/70 border-slate-400/50 text-white shadow-lg';
   const tileButtonInactive = 'bg-white/5 border-white/10 text-white/70 hover:text-white hover:border-slate-400/40 hover:bg-white/10';
 
+  const handleNavChange = (navId) => {
+    setActiveNav(navId);
+    setSidebarOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 h-full w-72 bg-black/40 backdrop-blur-xl border-r border-white/10 p-6">
+      <aside
+        className={`fixed left-0 top-0 z-40 h-full w-72 border-r border-white/10 bg-black/40 p-6 backdrop-blur-xl transition-transform duration-300 lg:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
         {/* Logo */}
         <div className="flex items-center gap-3 mb-8">
           <div className="w-10 h-10 rounded-full flex items-center justify-center">
@@ -182,7 +193,7 @@ export default function Home() {
               return (
                 <button
                   key={item.id}
-                  onClick={() => setActiveNav(item.id)}
+                  onClick={() => handleNavChange(item.id)}
                   className={`${tileButtonBase} flex items-center gap-3 text-left ${
                     isActive ? tileButtonActive : tileButtonInactive
                   }`}
@@ -229,21 +240,40 @@ export default function Home() {
           </div>
         </div>
 
-        
       </aside>
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <button
+          type="button"
+          aria-label="Close menu"
+          className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Main Content */}
-      <main className="ml-72 min-h-screen flex flex-col">
+      <main className="flex min-h-screen flex-col transition-[margin] duration-300 lg:ml-72">
         {/* Header */}
-        <header className="bg-black/20 backdrop-blur-xl border-b border-white/10 px-8 py-4 flex items-center justify-between">
+        <header className="flex items-center justify-between border-b border-white/10 bg-black/20 px-4 py-4 backdrop-blur-xl sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
-            
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/5 px-3 py-2 text-white lg:hidden"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation"
+            >
+              <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+              <span className="text-sm font-medium">{activeNavMeta.label}</span>
+            </button>
+            <div className="text-white/60 text-xs uppercase tracking-[0.4em] lg:hidden">
+              {activeNavMeta.description}
+            </div>
           </div>
           <div className="flex items-center gap-3">
             {/* <button className="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 transition-all">
               ⚙️ Settings
             </button> */}
-            <button className={`${primaryButtonBase} px-4 py-2`}>
+            <button className={`${primaryButtonBase} w-full justify-center px-4 py-2 sm:w-auto`}>
               <ArrowUpTrayIcon className="h-4 w-4" aria-hidden="true" />
               <span>Export</span>
             </button>
@@ -252,7 +282,7 @@ export default function Home() {
 
         <div className="flex-1 overflow-y-auto">
           {activeNav === 'gallery' ? (
-            <section className="px-8 py-8">
+            <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
               <div className="max-w-4xl mx-auto bg-black/20 backdrop-blur-xl border border-white/10 rounded-3xl p-6">
                 <div className="flex flex-col gap-4 md:flex-row md:items-end">
                   <div className="flex-1">
@@ -261,7 +291,7 @@ export default function Home() {
                       Search Wikimedia Commons for paleo imagery right from this tab.
                     </p>
                   </div>
-                  <form onSubmit={searchImages} className="w-full md:w-auto flex flex-col gap-3 sm:flex-row">
+                  <form onSubmit={searchImages} className="flex w-full flex-col gap-3 sm:flex-row">
                     <input
                       type="text"
                       value={imageQuery}
@@ -321,7 +351,7 @@ export default function Home() {
               </div>
             </section>
           ) : activeNav === 'chat' ? (
-            <section className="px-8 py-8">
+            <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
               {messages.length === 0 ? (
                 <div className="max-w-4xl mx-auto text-center">
                   <div className="mb-8 relative">
@@ -360,7 +390,7 @@ export default function Home() {
                     </a>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 max-w-3xl mx-auto">
+                  <div className="grid grid-cols-1 gap-4 max-w-3xl mx-auto sm:grid-cols-2">
                     {suggestedQuestions.map((question, idx) => (
                       <button
                         key={idx}
@@ -401,8 +431,8 @@ export default function Home() {
         </div>
 
         {activeNav === 'chat' && (
-          <div className="sticky bottom-0 z-50 bg-black/20 backdrop-blur-xl border-t border-white/10 p-6">
-            <form onSubmit={sendMessage} className="max-w-4xl mx-auto">
+          <div className="sticky bottom-0 z-50 border-t border-white/10 bg-black/20 p-4 backdrop-blur-xl sm:p-6">
+            <form onSubmit={sendMessage} className="mx-auto max-w-4xl">
               <div className="bg-white/5 backdrop-blur-xl border border-white/20 rounded-2xl flex items-end gap-2">
                 <div className="flex-1">
                   <textarea
@@ -421,7 +451,6 @@ export default function Home() {
                   />
                 </div>
                 <div className="flex items-center gap-2 px-2 py-2">
-                  
                   <button
                     type="submit"
                     disabled={loading || !input.trim()}

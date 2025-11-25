@@ -82,7 +82,7 @@ export function DiscoverDashboard() {
 
   if (loading) {
     return (
-      <section className="px-8 py-8">
+      <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div className="max-w-6xl mx-auto space-y-6">
           {/* Skeleton hero */}
           <div className={`${primaryPanelClasses} animate-pulse h-32`} />
@@ -110,7 +110,7 @@ export function DiscoverDashboard() {
 
   if (error) {
     return (
-      <section className="px-8 py-8">
+      <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
         <div className="max-w-3xl mx-auto text-center space-y-4">
           <p className="text-white/60 text-sm uppercase tracking-[0.3em]">
             Discover Dashboard
@@ -133,7 +133,7 @@ export function DiscoverDashboard() {
   }
 
   return (
-    <section className="px-8 py-8">
+    <section className="px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Hero panel (title, metadata, refresh button) */}
         <header className={`${primaryPanelClasses} flex flex-col gap-4 md:flex-row md:items-center md:justify-between`}>
