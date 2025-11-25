@@ -36,13 +36,20 @@ export async function searchDinosaur(name) {
  * @returns {Promise} - Fossil occurrence data
  */
 
-export async function getFossilOccurrences(taxonName) {
+export async function getFossilOccurrences(taxonName, options = {}) {
   try {
+    const {
+      limit = 100,
+      show = 'coords,loc,paleoloc,stratext',
+      ...additionalParams
+    } = options || {};
+
     const response = await axios.get(`${PALEODB_BASE_URL}/occs/list.json`, {
       params: {
         base_name: taxonName,
-        show: 'coords,loc,paleoloc,stratext', // Location and geological data
-        limit: 100 // Max results
+        show, // Location, geological and optional classification data
+        limit,
+        ...additionalParams
       }
     });
 

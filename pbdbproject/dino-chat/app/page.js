@@ -18,6 +18,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { ChatMessage } from '@/components/ChatMessage';
 import ImageLightbox from '@/components/ImageLightbox';
+import { DiscoverDashboard } from '@/components/DiscoverDashboard';
 
 
 export default function Home() {
@@ -136,7 +137,6 @@ export default function Home() {
   const tileButtonBase = 'w-full rounded-2xl border px-4 py-3 transition-all shadow-sm';
   const tileButtonActive = 'bg-linear-to-r from-slate-600/70 to-slate-700/70 border-slate-400/50 text-white shadow-lg';
   const tileButtonInactive = 'bg-white/5 border-white/10 text-white/70 hover:text-white hover:border-slate-400/40 hover:bg-white/10';
-  const activeNavMeta = navigationItems.find((item) => item.id === activeNav) || navigationItems[0];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -396,15 +396,7 @@ export default function Home() {
               )}
             </section>
           ) : (
-            <section className="px-8 py-8 flex items-center justify-center">
-              <div className="text-center max-w-md">
-                <p className="text-white/50 text-sm uppercase tracking-[0.3em] mb-3">{activeNavMeta.label}</p>
-                <h3 className="text-white text-3xl font-semibold mb-3">Coming soon</h3>
-                <p className="text-white/60 text-sm">
-                  The {activeNavMeta.label.toLowerCase()} experience is still being crafted. Check back later for curated paleo content.
-                </p>
-              </div>
-            </section>
+            <DiscoverDashboard />
           )}
         </div>
 

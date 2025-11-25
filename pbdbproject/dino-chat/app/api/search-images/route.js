@@ -1,3 +1,5 @@
+// app/api/search-images/route.js
+
 import { NextResponse } from 'next/server';
 
 export async function POST(request) {

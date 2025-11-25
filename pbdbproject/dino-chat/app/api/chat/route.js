@@ -1,6 +1,4 @@
-/**
- * This is the main API endpoint
- */
+// app/api/chat/route.js
 
 import { NextResponse } from "next/server";
 import { searchDinosaur, getFossilOccurrences, getTaxonDetails } from "@/lib/paleodb";
