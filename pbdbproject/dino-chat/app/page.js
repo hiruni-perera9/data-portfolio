@@ -14,11 +14,13 @@ import {
   BeakerIcon,
   PencilSquareIcon,
   ArrowUpTrayIcon,
-  Bars3Icon
+  Bars3Icon,
+  GlobeAmericasIcon
 } from '@heroicons/react/24/outline';
 import { ChatMessage } from '@/components/ChatMessage';
 import ImageLightbox from '@/components/ImageLightbox';
 import { DiscoverDashboard } from '@/components/DiscoverDashboard';
+import { GeographicalDistribution } from '@/components/GeographicalDistribution';
 
 
 export default function Home() {
@@ -127,6 +129,7 @@ export default function Home() {
   const navigationItems = [
     { id: 'chat', label: 'Chat', description: 'Talk to the paleo expert', icon: ChatBubbleLeftRightIcon },
     { id: 'discover', label: 'Discover', description: 'Browse curated fossil facts', icon: MapIcon },
+    { id: 'geography', label: 'Geographical Distribution', description: 'Explore fossil hotspots', icon: GlobeAmericasIcon },
     { id: 'gallery', label: 'Gallery', description: 'Dive into paleo imagery', icon: PhotoIcon }
   ];
   const activeNavMeta = navigationItems.find((item) => item.id === activeNav) || navigationItems[0];
@@ -425,6 +428,8 @@ export default function Home() {
                 </div>
               )}
             </section>
+          ) : activeNav === 'geography' ? (
+            <GeographicalDistribution />
           ) : (
             <DiscoverDashboard />
           )}
