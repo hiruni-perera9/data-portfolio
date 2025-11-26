@@ -147,7 +147,7 @@ AI-powered detection of dinosaur names in natural language:
 
 Deployed on Vercel
 
-The app is live at `https://dino-chat-beta.vercel.app/`
+The app is live [here](https://dino-chat-beta.vercel.app/)
 
 ## 🔮 Future Enhancements
 
@@ -176,9 +176,9 @@ This project is licensed under the MIT License
 
 Hiruni Perera - [@-hiruni-perera](https://www.linkedin.com/in/-hiruni-perera/) - khmp.perera@gmail.com
 
-Project Link: [https://github.com/hiruni-perera9/data-portfolio/pbdbproject/dino-chat]
+Project Link - [https://github.com/hiruni-perera9/data-portfolio/pbdbproject/dino-chat](https://github.com/hiruni-perera9/data-portfolio/pbdbproject/dino-chat)
 ---
 
 ⭐ If you found this project helpful, please give it a star on GitHub!
 
-Made with 🦕 by Hiruni Perera
+
