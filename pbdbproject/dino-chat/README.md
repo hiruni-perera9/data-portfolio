@@ -2,6 +2,8 @@
 
 An AI-powered web application that makes paleontology accessible to everyone through conversational AI, interactive visualizations, and real-time fossil data from the Paleobiology Database.
 
+The app is live [here](https://dino-chat-beta.vercel.app/)
+
 ![Paleo AI Banner](public/images/homepage.png) 
 
 ## 🌟 Features
@@ -147,8 +149,6 @@ AI-powered detection of dinosaur names in natural language:
 
 Deployed on Vercel
 
-The app is live [here](https://dino-chat-beta.vercel.app/)
-
 ## 🔮 Future Enhancements
 
 - [ ] Interactive heatmaps based on fossil occurences
@@ -176,7 +176,6 @@ This project is licensed under the MIT License
 
 Hiruni Perera - [@-hiruni-perera](https://www.linkedin.com/in/-hiruni-perera/) - khmp.perera@gmail.com
 
-Project Link - [https://github.com/hiruni-perera9/data-portfolio/pbdbproject/dino-chat](https://github.com/hiruni-perera9/data-portfolio/pbdbproject/dino-chat)
 ---
 
 ⭐ If you found this project helpful, please give it a star on GitHub!
