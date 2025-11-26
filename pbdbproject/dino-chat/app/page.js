@@ -13,7 +13,7 @@ import {
   AcademicCapIcon,
   BeakerIcon,
   PencilSquareIcon,
-  ArrowUpTrayIcon,
+  InformationCircleIcon,
   Bars3Icon,
   GlobeAmericasIcon
 } from '@heroicons/react/24/outline';
@@ -35,6 +35,7 @@ export default function Home() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [activeNav, setActiveNav] = useState('chat');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -142,6 +143,29 @@ export default function Home() {
   const tileButtonBase = 'w-full rounded-2xl border px-4 py-3 transition-all shadow-sm';
   const tileButtonActive = 'bg-linear-to-r from-slate-600/70 to-slate-700/70 border-slate-400/50 text-white shadow-lg';
   const tileButtonInactive = 'bg-white/5 border-white/10 text-white/70 hover:text-white hover:border-slate-400/40 hover:bg-white/10';
+  const aboutFeatures = [
+    'Conversational dinosaur expert powered by Gemini 2.0',
+    'Curated discovery feed with fast facts and citations',
+    'Interactive fossil distribution map backed by PaleoDB data',
+    'Image explorer that surfaces Wikimedia Commons visuals'
+  ];
+  const resourceLinks = [
+    {
+      label: 'Paleobiology Database',
+      href: 'https://paleobiodb.org/',
+      description: 'Open fossil occurrence data powering the explorer.'
+    },
+    {
+      label: 'Project Repository',
+      href: 'https://github.com/hiruni-perera9/data-portfolio/tree/3add742c7aaeed98425b69c7dad8b57e91273049/pbdbproject/dino-chat',
+      description: 'Explore the source code, issues, and roadmap.'
+    }
+  ];
+  const contactLinks = [
+    { label: 'GitHub', href: 'https://github.com/hiruni-perera9', value: '@hiruni-perera9' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/-hiruni-perera/', value: 'Hiruni Perera' },
+    { label: 'Email', href: 'mailto:khmp.perera@gmail.com', value: 'khmp.perera@gmail.com' }
+  ];
 
   const handleNavChange = (navId) => {
     setActiveNav(navId);
@@ -276,9 +300,13 @@ export default function Home() {
             {/* <button className="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 transition-all">
               ⚙️ Settings
             </button> */}
-            <button className={`${primaryButtonBase} w-full justify-center px-4 py-2 sm:w-auto`}>
-              <ArrowUpTrayIcon className="h-4 w-4" aria-hidden="true" />
-              <span>Export</span>
+            <button
+              type="button"
+              className={`${primaryButtonBase} w-full justify-center px-4 py-2 sm:w-auto`}
+              onClick={() => setAboutOpen(true)}
+            >
+              <InformationCircleIcon className="h-4 w-4" aria-hidden="true" />
+              <span>About</span>
             </button>
           </div>
         </header>
@@ -473,6 +501,92 @@ export default function Home() {
           </div>
         )}
       </main>
+      {aboutOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6">
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur"
+            aria-hidden="true"
+            onClick={() => setAboutOpen(false)}
+          />
+          <div className="relative z-10 w-full max-w-6xl rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 to-black p-8 text-white shadow-2xl">
+            <div className="flex items-start justify-between gap-6 flex-wrap">
+              <div>
+                <p className="text-xs uppercase tracking-[0.5em] text-white/50">Project spotlight</p>
+                <h2 className="text-3xl font-semibold mt-2">About Paleo AI</h2>
+                <p className="mt-3 text-white/70 max-w-2xl leading-relaxed">
+                  Paleo AI is a conversational research companion that blends Gemini intelligence with the
+                  Paleobiology Database to help you explore prehistoric life. Every surface, from the discovery
+                  feed to the interactive map, is crafted to make millions of fossil records feel approachable
+                  and inspiring.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="text-white/60 hover:text-white text-sm"
+                aria-label="Close about panel"
+                onClick={() => setAboutOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.4em] text-white/50 mb-4">Why it matters</p>
+                <ul className="space-y-3 text-sm text-white/80">
+                  {aboutFeatures.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <span className="mt-1 inline-block h-2 w-2 rounded-full bg-cyan-400" aria-hidden="true" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.4em] text-white/50 mb-4">Data & resources</p>
+                <div className="space-y-4">
+                  {resourceLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block rounded-2xl border border-white/10 bg-black/40 px-4 py-3 transition hover:border-cyan-400/60"
+                    >
+                      <p className="font-semibold">{link.label}</p>
+                      <p className="text-sm text-white/70">{link.description}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="mt-8 rounded-3xl border border-white/10 bg-gradient-to-r from-slate-800/80 to-slate-900/60 p-6">
+              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/50">Connect</p>
+                  <h3 className="text-2xl font-semibold mt-2">Stay in Touch with Me</h3>
+                  <p className="text-white/70 text-sm mt-2 max-w-sm">
+                    Have feedback, questions, or fossil datasets to share? Reach out anytime, we would love to hear from you.
+                  </p>
+                </div>
+                <div className="grid w-full gap-3 md:w-auto md:grid-cols-3">
+                  {contactLinks.map((contact) => (
+                    <a
+                      key={contact.label}
+                      href={contact.href}
+                      target={contact.href.startsWith('mailto:') ? undefined : '_blank'}
+                      rel={contact.href.startsWith('mailto:') ? undefined : 'noreferrer'}
+                      className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm hover:border-cyan-400/60"
+                    >
+                      <p className="text-white/60 text-xs uppercase tracking-[0.3em]">{contact.label}</p>
+                      <p className="text-white font-semibold">{contact.value}</p>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
